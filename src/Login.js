@@ -15,7 +15,7 @@ import {
   Text,
   VStack
 } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   loginSuccess
@@ -25,45 +25,20 @@ import { useNavigate } from "react-router-dom";
 const Login = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate()
-  const { isLoggedIn } = useSelector((state) => state.auth)
-  console.log(isLoggedIn, "auth");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
-
-  // useEffect(() => {
-  //   const isLoggedIn = localStorage.getItem("isLoggedIn");
-  //   // if (JSON.parse(isLoggedIn)) {
-  //   //   // navigate to dashboard
-  //   // }
-  // }, [])
-
+  const { user, isLoggedIn } = useSelector((state) => state.auth)
   const handleLogin = (event) => {
-    // Simulate API call for login
     event.preventDefault();
-
-    // const user = auth.user.filter((user) => user.username === username);
-    // console.log("user found", user);
-    // dispatch(loginSuccess(user));
-    const savedUsers = localStorage.getItem("users");
-    const isLoggedIn = localStorage.getItem("isLoggedIn");
-    if (savedUsers) {
-      const users = JSON.parse(savedUsers);
-      const user = users.filter((user) => user.username === username);
-
-      // if (user.username !== username) {
-      //   setErrorMessage("User not found. Please sign up.");
-      // } else if (user.username === username && user.password !== password) {
-      //   setErrorMessage("Password incorrect.");
-      // } else if (user.username === username && user.password === password) {
-      dispatch(loginSuccess(user));
-      setErrorMessage("");
-      isLoggedIn && navigate('/layOuts')
-      // }
+    const chkUser = user.filter((user) => user.username === username && user.password === password);
+    if (chkUser.length > 0) {
+      dispatch(loginSuccess(chkUser));
+      navigate('/LayOuts');
+    } else {
+      setErrorMessage("User not found. Please sign up.")
     }
-    else {
-      setErrorMessage("No user found. Please sign up.");
-    }
+
   };
 
   return (

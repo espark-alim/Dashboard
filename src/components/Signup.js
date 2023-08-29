@@ -11,7 +11,7 @@ const Signup = () => {
   const [singUpMessage, setSingUpMessage] = useState("");
   const handleSignup = (event) => {
     event.preventDefault();
-    const user = { id: 1, username: username, password: password }; // Replace with actual user data
+    const user = { username: username, password: password, isLoggedIn: true }; // Replace with actual user data
     dispatch(signupSuccess(user));
     if (user) {
       setSingUpMessage("your accout is created login again!")

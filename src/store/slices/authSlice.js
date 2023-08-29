@@ -29,19 +29,18 @@ export const saveLoggedInUserToLocalStorage = (user) => {
 const authSlice = createSlice({
   name: "auth",
   initialState: {
-    user: {},
+    user: [],
     isLoggedIn: false,
   },
   reducers: {
     loginSuccess: (state, action) => {
       state.user = action.payload;
       state.isLoggedIn = true;
-      saveLoggedInUserToLocalStorage();
     },
     signupSuccess: (state, action) => {
-      state.user = action.payload;
+      state.user.push(action.payload)
       state.isLoggedIn = false;
-      saveUserToLocalStorage(action.payload);
+      // saveUserToLocalStorage(action.payload);
     },
     logout: (state) => {
       state.user = null;
