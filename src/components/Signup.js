@@ -3,21 +3,24 @@ import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { signupSuccess } from '../store/slices/authSlice';
 import { Button, Checkbox, Container, FormControl, FormLabel, Grid, GridItem, Heading, Input, Link, Text, VStack } from '@chakra-ui/react';
+import { useNavigate } from 'react-router-dom';
 
 const Signup = () => {
   const dispatch = useDispatch();
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [singUpMessage, setSingUpMessage] = useState("");
+  const navigate = useNavigate()
   const handleSignup = (event) => {
     event.preventDefault();
     const user = { username: username, password: password, isLoggedIn: true }; // Replace with actual user data
     dispatch(signupSuccess(user));
     if (user) {
-      setSingUpMessage("your accout is created login again!")
+      navigate('/accountCreated')
     }
     setUsername('')
     setPassword('')
+
   };
 
   return (
@@ -73,7 +76,7 @@ const Signup = () => {
                 <Text my={5} color={"red"}>
                   {singUpMessage && <p>{singUpMessage}</p>}
                 </Text>
-                <Link href='/'>clink here to login</Link>
+                <Link href='/'>Click here to Login</Link>
               </GridItem>
             </Grid>
           </form>

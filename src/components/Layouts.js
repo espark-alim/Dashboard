@@ -5,7 +5,7 @@ import Sidebar from "./Sidebar";
 import MainContent from "./MainContent";
 import { useSelector } from "react-redux";
 
-const LayOuts = ({ children }) => {
+const Layouts = ({ children }) => {
     const { isCollapsed } = useSelector((state) => state.Collapse)
     return (
 
@@ -39,4 +39,4 @@ const LayOuts = ({ children }) => {
     );
 }
 
-export default LayOuts;
+export default Layouts;

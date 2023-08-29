@@ -1,11 +1,10 @@
 import React from "react";
-import Login from "./Login"
+import Login from "./components/Login"
 import Signup from "./components/Signup"
 import { Route, BrowserRouter as Router, Routes } from 'react-router-dom';
-import { Flex } from "@chakra-ui/react";
-import LayOuts from "./components/LayOut";
-import Sidebar from "./components/Sidebar";
+import Layouts from "./components/Layouts";
 import { useSelector } from "react-redux";
+import AccountCreated from "./components/AccountCreated";
 
 function App() {
   const { isCollapsed } = useSelector((state) => state.Collapse)
@@ -15,7 +14,8 @@ function App() {
         <Routes>
           <Route path="/" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/layOuts" element={<LayOuts />} />
+          <Route path="/layouts" element={<Layouts />} />
+          <Route path="/accountCreated" element={<AccountCreated />} />
         </Routes>
       </Router>
     </>

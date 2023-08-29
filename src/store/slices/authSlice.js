@@ -1,6 +1,7 @@
 // slices/authSlice.js
 import { createSlice } from "@reduxjs/toolkit";
 
+
 export const loadUserFromLocalStorage = () => {
   try {
     const user = localStorage.getItem("user");
@@ -43,9 +44,10 @@ const authSlice = createSlice({
       // saveUserToLocalStorage(action.payload);
     },
     logout: (state) => {
-      state.user = null;
       state.isLoggedIn = false;
-      localStorage.removeItem("user");
+      // state.user = null;
+      console.log(state.user)
+
     },
   },
 });

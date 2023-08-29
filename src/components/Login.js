@@ -19,7 +19,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   loginSuccess
-} from "../src/store/slices/authSlice";
+} from "../store/slices/authSlice";
 import { useNavigate } from "react-router-dom";
 
 const Login = () => {
@@ -34,7 +34,7 @@ const Login = () => {
     const chkUser = user.filter((user) => user.username === username && user.password === password);
     if (chkUser.length > 0) {
       dispatch(loginSuccess(chkUser));
-      navigate('/LayOuts');
+      navigate('/layouts');
     } else {
       setErrorMessage("User not found. Please sign up.")
     }
@@ -94,7 +94,7 @@ const Login = () => {
                 <Text my={5} color={"red"}>
                   {errorMessage && <p>{errorMessage}</p>}
                 </Text>
-                <Link href="/Signup">clink here to SignUp</Link>
+                <Link href="/Signup">Click here to SignUp</Link>
               </GridItem>
             </Grid>
           </form>
